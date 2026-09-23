@@ -1,0 +1,16 @@
+node_modules
+dist
+.DS_Store
+*.local
+scripts/.font-cache
+
+# Android / Bubblewrap. NEVER commit a signing keystore or its passwords.
+# The Android project lives outside this repo (see SETUP-ANDROID.md); these
+# rules are a backstop in case a build output ever lands here.
+*.keystore
+*.jks
+keystore.properties
+*.aab
+*.apk
+*.idsig
+.claude/

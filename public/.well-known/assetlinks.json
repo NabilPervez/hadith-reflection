@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.nabilpervez.hadithreflection",
+      "sha256_cert_fingerprints": [
+        "13:36:F9:28:F5:E0:8C:50:8B:9A:18:DA:0E:1F:E0:06:F9:A9:92:9A:2E:F3:F0:65:CD:BD:E2:79:2A:58:DA:71"
+      ]
+    }
+  }
+]

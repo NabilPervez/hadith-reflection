@@ -1,26 +1,39 @@
 # Hadith Reflection
 
-A simple, offline-first web application designed to help users read, reflect, and save their personal thoughts on Hadith narrations.
+Read the major Hadith collections one narration at a time, in Arabic and English, and keep a
+private reflection journal that never leaves your device. Installable as a PWA and published on
+Android as a Trusted Web Activity.
+
+**Live:** https://hadith-reflection.netlify.app
 
 ## Features
 
-- **Library**: Browse through various Hadith collections and select a chapter to focus on.
-- **Focus Mode (Reader)**: Read the selected Hadith with its original Arabic text and English translation. Adjust font sizes to your preference, and write your personal reflections directly within the app.
-- **Journal**: All your reflections are automatically saved to your device. You can view them chronologically in your journal.
-- **Offline First**: The app caches collections as you read them, so you can continue reading and reflecting even without an internet connection.
-- **Privacy & Export/Import**: All data is stored locally on your device. There are no accounts, no tracking, and no servers. You can easily back up your reflections by exporting them to a JSON file, and restore them later by importing the file in the Settings menu.
+- **Library** of nine collections: Bukhari, Muslim, Abu Dawud, Tirmidhi, Nasa'i, Ibn Majah,
+  Muwatta Malik, Nawawi's Forty and Forty Hadith Qudsi. Download size is shown before the first open.
+- **Reader** with Arabic and English, scholars' grades, swipe or arrow-key navigation, a chapter
+  picker, jump-to-hadith, and resume where you left off.
+- **Journal**: reflections autosave as you type, are searchable, and open back to their hadith.
+- **Offline**: a collection downloads once into IndexedDB; the service worker caches the app shell
+  and fonts.
+- **Private**: no accounts, analytics or servers. Export and import the journal as JSON.
+- Light and dark themes; Android back button and launcher shortcuts behave natively.
 
-## How it works
+Hadith data comes from [fawazahmed0/hadith-api](https://github.com/fawazahmed0/hadith-api).
 
-The application is built as a single-page React app. It uses the device's local storage to persist user settings, cached Hadith collections, and all personal reflections. This guarantees your data remains private and entirely in your control.
+## Development
 
-## Usage
+```bash
+npm install
+npm run dev        # http://localhost:5173
+npm test           # unit tests (Vitest)
+npm run build      # production build in dist/
+npm run preview    # serve dist/ to test the service worker
+npm run icons      # regenerate icons and Play Store graphics
+npm run twa:check  # check the live site is ready for the Android app
+```
 
-1. Open the **Library** to explore available Hadith collections.
-2. Select a chapter to enter **Focus** mode, where you can read narrations and write down your thoughts.
-3. Access your **Journal** to review all your saved reflections.
-4. Use the **Settings** (accessible via the ⚙️ icon in the Library or Journal pages) to adjust font sizes, manage cached data, or export/import your journal.
+Stack: React 19, Vite, vite-plugin-pwa (Workbox). Deployed on Netlify (`netlify.toml`).
 
-## Contributing
+## Android
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+See [SETUP-ANDROID.md](SETUP-ANDROID.md) for the Bubblewrap build and Play Console steps.

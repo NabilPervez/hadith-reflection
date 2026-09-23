@@ -1,0 +1,60 @@
+{
+  "packageId": "com.nabilpervez.hadithreflection",
+  "host": "hadith-reflection.netlify.app",
+  "name": "Hadith Reflection",
+  "launcherName": "Hadith",
+  "display": "standalone",
+  "themeColor": "#FAFAF8",
+  "themeColorDark": "#151412",
+  "navigationColor": "#FAFAF8",
+  "navigationColorDark": "#151412",
+  "navigationDividerColor": "#FAFAF8",
+  "navigationDividerColorDark": "#151412",
+  "backgroundColor": "#FAFAF8",
+  "enableNotifications": false,
+  "startUrl": "/",
+  "iconUrl": "https://hadith-reflection.netlify.app/icon-512.png",
+  "maskableIconUrl": "https://hadith-reflection.netlify.app/icon-maskable-512.png",
+  "splashScreenFadeOutDuration": 300,
+  "signingKey": {
+    "path": "C:\\Users\\perve\\bullet-journal-android\\android.keystore",
+    "alias": "android"
+  },
+  "appVersionName": "1",
+  "appVersionCode": 1,
+  "shortcuts": [
+    {
+      "name": "Continue reading",
+      "shortName": "Continue",
+      "url": "/?open=resume",
+      "chosenIconUrl": "https://hadith-reflection.netlify.app/shortcut-resume.png"
+    },
+    {
+      "name": "My journal",
+      "shortName": "Journal",
+      "url": "/?view=journal",
+      "chosenIconUrl": "https://hadith-reflection.netlify.app/shortcut-journal.png"
+    }
+  ],
+  "generatorApp": "bubblewrap-cli",
+  "webManifestUrl": "https://hadith-reflection.netlify.app/manifest.webmanifest",
+  "fallbackType": "customtabs",
+  "features": {},
+  "alphaDependencies": {
+    "enabled": false
+  },
+  "enableSiteSettingsShortcut": true,
+  "isChromeOSOnly": false,
+  "isMetaQuest": false,
+  "fullScopeUrl": "https://hadith-reflection.netlify.app/",
+  "minSdkVersion": 21,
+  "orientation": "any",
+  "fingerprints": [],
+  "additionalTrustedOrigins": [],
+  "retainedBundles": [],
+  "protocolHandlers": [],
+  "fileHandlers": [],
+  "launchHandlerClientMode": "",
+  "displayOverride": [],
+  "appVersion": "1"
+}
