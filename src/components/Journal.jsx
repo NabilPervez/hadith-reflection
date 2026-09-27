@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import Icon from "./Icon.jsx";
 import { listReflections, deleteReflection, putReflection } from "../lib/reflections.js";
 import { exportJournal } from "../lib/backup.js";
+import { shareText } from "../lib/share.js";
 
 const formatDate = (iso) => {
   try {
@@ -99,6 +100,18 @@ export default function Journal({ refreshKey, onOpen, onSettings, onLibrary, sho
           <div className="journal-actions">
             <button className="danger-text" onClick={() => remove(entry)}>
               Delete
+            </button>
+            <button
+              className="link-btn"
+              onClick={() =>
+                shareText({
+                  title: `${entry.bookName} · Hadith ${entry.hadithId}`,
+                  parts: [entry.hadithExcerpt, `— ${entry.bookName}, Hadith ${entry.hadithId}`, `My reflection: ${entry.text.trim()}`],
+                  showToast,
+                })
+              }
+            >
+              <Icon name="share" size={14} /> Share
             </button>
             <button className="link-btn" onClick={() => onOpen(entry)}>
               Open hadith →

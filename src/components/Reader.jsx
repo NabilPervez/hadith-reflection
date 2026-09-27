@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Icon from "./Icon.jsx";
 import Sheet from "./Sheet.jsx";
+import { isFavorite, toggleFavorite } from "../lib/favorites.js";
 import { gradeTone, hadithsInChapter } from "../lib/hadith.js";
 import { listReflections, reflectionId, saveReflection } from "../lib/reflections.js";
 
@@ -143,26 +144,14 @@ export default function Reader({ reading, settings, onBack, onChangeChapter, onC
     if (Math.abs(dx) > 70 && Math.abs(dy) < 50 && Date.now() - start.time < 600) go(dx < 0 ? 1 : -1);
   };
 
-  const share = async () => {
-    flush();
-    const parts = [hadith.englishText || hadith.arabicText, `— ${hadith.citation}`];
-    if (text.trim()) parts.push(`My reflection: ${text.trim()}`);
-    parts.push("Shared from Hadith Reflection · https://hadith-reflection.netlify.app/");
-    const body = parts.join("\n\n");
-    if (navigator.share) {
-      try {
-        await navigator.share({ title: hadith.citation, text: body });
-      } catch {
-        /* dismissed */
-      }
-      return;
-    }
-    try {
-      await navigator.clipboard.writeText(body);
-      showToast("Copied to clipboard");
-    } catch {
-      showToast("Sharing isn't available in this browser");
-    }
+  const [favorite, setFavorite] = useState(false);
+  useEffect(() => {
+    setFavorite(noteId ? isFavorite(noteId) : false);
+  }, [noteId]);
+  const onFavorite = () => {
+    const on = toggleFavorite(noteId);
+    setFavorite(on);
+    showToast(on ? "Added to favorites" : "Removed from favorites");
   };
 
   if (!hadith) {
@@ -254,8 +243,8 @@ export default function Reader({ reading, settings, onBack, onChangeChapter, onC
         <button className="btn btn-ghost" onClick={() => go(-1)} disabled={atStart} aria-label="Previous narration">
           <Icon name="back" size={20} />
         </button>
-        <button className="btn btn-soft" onClick={share}>
-          <Icon name="share" size={18} /> Share
+        <button className="btn btn-soft" onClick={onFavorite} aria-pressed={favorite}>
+          <Icon name="heart" size={18} fill={favorite ? "currentColor" : "none"} /> {favorite ? "Favorited" : "Favorite"}
         </button>
         <button className="btn btn-primary" onClick={() => go(1)} disabled={atEnd}>
           {index < list.length - 1 ? "Next" : "Next chapter"} <Icon name="forward" size={18} />
